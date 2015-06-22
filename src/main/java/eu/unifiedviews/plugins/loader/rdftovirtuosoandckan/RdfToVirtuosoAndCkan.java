@@ -1,6 +1,7 @@
 package eu.unifiedviews.plugins.loader.rdftovirtuosoandckan;
 
 import java.text.MessageFormat;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.json.JsonObject;
@@ -35,6 +36,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
     public static final String CONFIGURATION_DATASET_URI_PATTERN = "dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern";
 
+    public static final String CONFIGURATION_HTTP_HEADER = "org.opendatanode.CKAN.http.header.";
+
     public RdfToVirtuosoAndCkan() {
         super(RdfToVirtuosoAndCkanVaadinDialog.class, ConfigHistory.noHistory(RdfToVirtuosoAndCkanConfig_V1.class));
     }
@@ -57,10 +60,19 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         }
         String datasetUriPattern = environment.get(CONFIGURATION_DATASET_URI_PATTERN);
 
+        Map<String, String> additionalHttpHeaders = new HashMap<>();
+        for (Map.Entry<String, String> configEntry : environment.entrySet()) {
+            if (configEntry.getKey().startsWith(CONFIGURATION_HTTP_HEADER)) {
+                String headerName = configEntry.getKey().replace(CONFIGURATION_HTTP_HEADER, "");
+                String headerValue = configEntry.getValue();
+                additionalHttpHeaders.put(headerName, headerValue);
+            }
+        }
+
         RdfToCkan rdfToCkan = new RdfToCkan();
         RdfToVirtuoso rdfToVirtuoso = new RdfToVirtuoso();
 
-        JsonObject dataset = rdfToCkan.packageShow(catalogApiLocation, pipelineId, userId, secretToken);
+        JsonObject dataset = rdfToCkan.packageShow(catalogApiLocation, pipelineId, userId, secretToken, additionalHttpHeaders);
         String datasetName = dataset.getJsonObject("result").getString("name");
         String datasetUri = MessageFormat.format(datasetUriPattern, datasetName);
 
