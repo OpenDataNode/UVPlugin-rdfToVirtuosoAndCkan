@@ -31,12 +31,13 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
     @DataUnit.AsInput(name = "rdfInput")
     public RDFDataUnit rdfInput;
 
+    @DataUnit.AsInput(name = "distributionInput", optional = true)
+    public RDFDataUnit distributionInput;
+
     @DataUnit.AsOutput(name = "rdfIntermediate")
     public WritableRDFDataUnit rdfIntermediate;
 
     public static final String CONFIGURATION_DATASET_URI_PATTERN = "dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern";
-
-    public static final String CONFIGURATION_HTTP_HEADER = "org.opendatanode.CKAN.http.header.";
 
     public RdfToVirtuosoAndCkan() {
         super(RdfToVirtuosoAndCkanVaadinDialog.class, ConfigHistory.noHistory(RdfToVirtuosoAndCkanConfig_V1.class));
@@ -51,7 +52,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         if (environment.get(RdfToCkan.CONFIGURATION_SECRET_TOKEN) == null || environment.get(RdfToCkan.CONFIGURATION_SECRET_TOKEN).isEmpty()) {
             throw ContextUtils.dpuException(ctx, "RdfToCkan.execute.exception.missingSecretToken");
         }
-        String userId = dpuContext.getPipelineOwner();
+        String userId = (dpuContext.getPipelineExecutionOwnerExternalId() != null) ? dpuContext.getPipelineExecutionOwnerExternalId()
+                : dpuContext.getPipelineExecutionOwner();
         String pipelineId = String.valueOf(dpuContext.getPipelineId());
 
         String catalogApiLocation = environment.get(RdfToCkan.CONFIGURATION_CATALOG_API_LOCATION);
@@ -62,8 +64,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
         Map<String, String> additionalHttpHeaders = new HashMap<>();
         for (Map.Entry<String, String> configEntry : environment.entrySet()) {
-            if (configEntry.getKey().startsWith(CONFIGURATION_HTTP_HEADER)) {
-                String headerName = configEntry.getKey().replace(CONFIGURATION_HTTP_HEADER, "");
+            if (configEntry.getKey().startsWith(RdfToCkan.CONFIGURATION_HTTP_HEADER)) {
+                String headerName = configEntry.getKey().replace(RdfToCkan.CONFIGURATION_HTTP_HEADER, "");
                 String headerValue = configEntry.getValue();
                 additionalHttpHeaders.put(headerName, headerValue);
             }
@@ -89,6 +91,7 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         rdfToVirtuoso.outerExecute(ctx, rdfToVirtuosoConfig);
 
         rdfToCkan.rdfInput = rdfIntermediate;
+        rdfToCkan.distributionInput = distributionInput;
         rdfToCkan.outerExecute(ctx, new RdfToCkanConfig_V1());
     }
 
