@@ -74,7 +74,7 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         RdfToCkan rdfToCkan = new RdfToCkan();
         RdfToVirtuoso rdfToVirtuoso = new RdfToVirtuoso();
 
-        JsonObject dataset = rdfToCkan.packageShow(catalogApiLocation, pipelineId, userId, secretToken, additionalHttpHeaders);
+        JsonObject dataset = rdfToCkan.packageShow(ctx, catalogApiLocation, pipelineId, userId, secretToken, additionalHttpHeaders);
         String datasetName = dataset.getJsonObject("result").getString("name");
         String datasetUri = MessageFormat.format(datasetUriPattern, datasetName);
 
