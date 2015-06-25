@@ -10,7 +10,7 @@
 		<relativePath />
 	</parent>
 
-	<groupId>eu.unifiedviews.plugins</groupId>
+	<groupId>org.opendatanode.plugins</groupId>
 	<artifactId>uv-l-rdfToVirtuosoAndCkan</artifactId>
 	<name>L-RdfToVirtuosoAndCkan</name>
 	<description>Loads RDF data to Virtuoso using L-RdfToVirtuoso and creates CKAN resources using L-RdfToCkan.</description>
