@@ -49,7 +49,10 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         Map<String, String> environment = dpuContext.getEnvironment();
 
         String secretToken = environment.get(RdfToCkan.CONFIGURATION_SECRET_TOKEN);
-        if (environment.get(RdfToCkan.CONFIGURATION_SECRET_TOKEN) == null || environment.get(RdfToCkan.CONFIGURATION_SECRET_TOKEN).isEmpty()) {
+        if (isEmpty(secretToken)) {
+            secretToken = environment.get(RdfToCkan.CONFIGURATION_DPU_SECRET_TOKEN);
+        }
+        if (isEmpty(secretToken)) {
             throw ContextUtils.dpuException(ctx, "RdfToCkan.execute.exception.missingSecretToken");
         }
         String userId = (dpuContext.getPipelineExecutionOwnerExternalId() != null) ? dpuContext.getPipelineExecutionOwnerExternalId()
@@ -57,7 +60,10 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         String pipelineId = String.valueOf(dpuContext.getPipelineId());
 
         String catalogApiLocation = environment.get(RdfToCkan.CONFIGURATION_CATALOG_API_LOCATION);
-        if (catalogApiLocation == null || catalogApiLocation.isEmpty()) {
+        if (isEmpty(catalogApiLocation)) {
+            catalogApiLocation = environment.get(RdfToCkan.CONFIGURATION_DPU_CATALOG_API_LOCATION);
+        }
+        if (isEmpty(catalogApiLocation)) {
             throw ContextUtils.dpuException(ctx, "RdfToCkan.execute.exception.missingCatalogApiLocation");
         }
         String datasetUriPattern = environment.get(CONFIGURATION_DATASET_URI_PATTERN);
@@ -93,6 +99,13 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         rdfToCkan.rdfInput = rdfIntermediate;
         rdfToCkan.distributionInput = distributionInput;
         rdfToCkan.outerExecute(ctx, new RdfToCkanConfig_V1());
+    }
+
+    private static boolean isEmpty(String value) {
+        if (value == null || value.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
 }
