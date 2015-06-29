@@ -18,7 +18,7 @@
 	<packaging>bundle</packaging>
 
 	<properties>
-		<dpu.package>eu.unifiedviews.plugins.loader.rdftovirtuosoandckan</dpu.package>
+		<dpu.package>org.opendatanode.plugins.loader.rdftovirtuosoandckan</dpu.package>
 		<dpu.mainClass>RdfToVirtuosoAndCkan</dpu.mainClass>
 		<embed.transitive>true</embed.transitive>
 	</properties>

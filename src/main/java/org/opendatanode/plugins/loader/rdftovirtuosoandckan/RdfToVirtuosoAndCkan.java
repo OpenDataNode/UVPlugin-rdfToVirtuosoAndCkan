@@ -1,4 +1,4 @@
-package eu.unifiedviews.plugins.loader.rdftovirtuosoandckan;
+package org.opendatanode.plugins.loader.rdftovirtuosoandckan;
 
 import java.text.MessageFormat;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkan;
 import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkanConfig_V1;
 import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuoso;
 import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuosoConfig_V1;
+import eu.unifiedviews.plugins.loader.rdftovirtuosoandckan.RdfToVirtuosoAndCkanConfig_V1;
 
 @DPU.AsLoader
 public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig_V1> {
