@@ -15,19 +15,47 @@
 
 ***
 
-###Configuration parameters###
+###Dialog configuration parameters###
 
+
+|Parameter                        |Description                             |
+|---------------------------------|----------------------------------------|
+
+***
+
+###Configuration parameters###
 
 |Parameter                        |Description                             |                                                        
 |---------------------------------|----------------------------------------|
-|**Virtuoso JDBC URL:** |URL for establishing JDBC session with Virtuoso server.  |
-|**Username:** |Username for Virtuoso server. |
-|**Password:** |Password for the username. |
-|**Clear destination graph before loading (checkbox):** |Self-descriptive  |
-|**Target Graph:**|Target graph URI. May be empty to indicate per-graph loading (each graph on input is loaded into separate graph on output) |
-|**Thread count:**|How many threads may be used to speed up loading |
-|**Skip file on error (checkbox):**|Do not stop the pipeline when error occurs (if checked). |
+|**dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern** |URL  pattern to build RDF graph name in Virtuoso storage. |
+|**org.opendatanode.CKAN.secret.token**    |Token used to authenticate to CKAN, has to be set in backend.properties  |
+|**org.opendatanode.CKAN.api.url** | URL where CKAN api is located, has to be set in backend.properties |
+|**org.opendatanode.CKAN.http.header.[key]** | Custom HTTP header added to requests on CKAN |
 
+####Deprecated parameters###
+
+These parameters are deprecated and kept only for backward compatibility with version 1.0.X.
+They will be removed in 1.1.0 of DPU.
+
+|Parameter                             |Description                             |
+|--------------------------------------|----------------------------------------|
+|**dpu.uv-l-rdfToCkan.secret.token**    | alias to _org.opendatanode.CKAN.secret.token_  |
+|**dpu.uv-l-rdfToCkan.catalog.api.url** | alias to _org.opendatanode.CKAN.api.url_ |
+
+***
+
+####Examples####
+```INI
+dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${id}
+```
+example Virtuoso graph name https://host/internalcatalog/dataset/452fddaa-c469-4b78-823d-320fb1bd8646.
+Notice the 452fddaa-c469-4b78-823d-320fb1bd8646 - id of CKAN dataset.
+
+```INI
+dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${name}
+```
+example Virtuoso graph name https://host/internalcatalog/dataset/my-dataset-name
+Notice the my-dataset-name - name property of CKAN dataset (the one from URL of dataset).
 
 ***
 
@@ -35,7 +63,8 @@
 
 |Name                |Type       |DataUnit                         |Description                        |
 |--------------------|-----------|---------------------------------|-----------------------------------|
-|TODO: provide Name, Dataunit and Description of input |i |  |  |
+|rdfInput |i |RDFDataUnit |RDF data loaded to Virtuoso and specified CKAN instance  |
+|distributionInput |i (optional) |RDFDataUnit | Distribution metadata produced by e-distributionMetadata  |
 
 ***
 
@@ -43,6 +72,7 @@
 
 |Version            |Release notes                                   |
 |-------------------|------------------------------------------------|
+|1.1.0              |Changed configuration value dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/{} to new format:dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${id} or dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${name}                        |
 |1.0.0              |Initial release.                         |
 
 
