@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.json.JsonObject;
 
+import org.apache.commons.lang3.text.StrSubstitutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,8 +82,11 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
         RdfToVirtuoso rdfToVirtuoso = new RdfToVirtuoso();
 
         JsonObject dataset = rdfToCkan.packageShow(ctx, catalogApiLocation, pipelineId, userId, secretToken, additionalHttpHeaders);
-        String datasetName = dataset.getJsonObject("result").getString("name");
-        String datasetUri = MessageFormat.format(datasetUriPattern, datasetName);
+        Map<String, String> args = new HashMap<>();
+        args.put("id", dataset.getJsonObject("result").getString("id"));
+        args.put("name", dataset.getJsonObject("result").getString("name"));
+        StrSubstitutor sub = new StrSubstitutor(args);
+        String datasetUri = sub.replace(datasetUriPattern);
 
         RdfToVirtuosoConfig_V1 rdfToVirtuosoConfig = new RdfToVirtuosoConfig_V1();
         rdfToVirtuosoConfig.setVirtuosoUrl(null);
