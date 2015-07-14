@@ -29,6 +29,7 @@
 |Parameter                        |Description                             |                                                        
 |---------------------------------|----------------------------------------|
 |**dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern** |URL  pattern to build RDF graph name in Virtuoso storage. |
+|**dpu.uv-l-rdfToVirtuosoAndCkan.resource.name** | Name of the CKAN resource to be used, has precedence over distributionMetadata input |
 |**org.opendatanode.CKAN.secret.token**    |Token used to authenticate to CKAN, has to be set in backend.properties  |
 |**org.opendatanode.CKAN.api.url** | URL where CKAN api is located, has to be set in backend.properties |
 |**org.opendatanode.CKAN.http.header.[key]** | Custom HTTP header added to requests on CKAN |

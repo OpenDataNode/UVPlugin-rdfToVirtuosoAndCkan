@@ -40,6 +40,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
     public static final String CONFIGURATION_DATASET_URI_PATTERN = "dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern";
 
+    public static final String CONFIGURATION_RESOURCE_NAME = "dpu.uv-l-rdfToVirtuosoAndCkan.resource.name";
+
     public RdfToVirtuosoAndCkan() {
         super(RdfToVirtuosoAndCkanVaadinDialog.class, ConfigHistory.noHistory(RdfToVirtuosoAndCkanConfig_V1.class));
     }
@@ -68,7 +70,9 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
             throw ContextUtils.dpuException(ctx, "RdfToCkan.execute.exception.missingCatalogApiLocation");
         }
         String datasetUriPattern = environment.get(CONFIGURATION_DATASET_URI_PATTERN);
-
+        
+        String resourceName = environment.get(CONFIGURATION_RESOURCE_NAME);
+        
         Map<String, String> additionalHttpHeaders = new HashMap<>();
         for (Map.Entry<String, String> configEntry : environment.entrySet()) {
             if (configEntry.getKey().startsWith(RdfToCkan.CONFIGURATION_HTTP_HEADER)) {
@@ -102,6 +106,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
         rdfToCkan.rdfInput = rdfIntermediate;
         rdfToCkan.distributionInput = distributionInput;
-        rdfToCkan.outerExecute(ctx, new RdfToCkanConfig_V1());
+        RdfToCkanConfig_V1 rdfToCkanConfig= new RdfToCkanConfig_V1();
+        rdfToCkanConfig.setResourceName(resourceName);
+        rdfToCkan.outerExecute(ctx, rdfToCkanConfig);
     }
 }
