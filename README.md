@@ -20,6 +20,7 @@
 
 |Parameter                        |Description                             |
 |---------------------------------|----------------------------------------|
+|**Clear destination graph before loading (checkbox):** | When checked (which is the default): before loading new RDF clear all previously loaded data (into specified graph). When unchecked, old RDF data and new RDF data are merged as union of RDF triples (RDF triples cannot be duplicated) |
 
 ***
 
