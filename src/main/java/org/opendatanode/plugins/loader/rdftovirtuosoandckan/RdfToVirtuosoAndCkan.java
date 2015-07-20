@@ -1,4 +1,4 @@
-package eu.unifiedviews.plugins.loader.rdftovirtuosoandckan;
+package org.opendatanode.plugins.loader.rdftovirtuosoandckan;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,10 +19,11 @@ import eu.unifiedviews.dpu.DPUException;
 import eu.unifiedviews.helpers.dpu.config.ConfigHistory;
 import eu.unifiedviews.helpers.dpu.context.ContextUtils;
 import eu.unifiedviews.helpers.dpu.exec.AbstractDpu;
-import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkan;
 import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkanConfig_V1;
 import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuoso;
 import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuosoConfig_V1;
+import eu.unifiedviews.plugins.loader.rdftovirtuosoandckan.RdfToVirtuosoAndCkanConfig_V1;
+import org.opendatanode.plugins.loader.rdftockan.RdfToCkan;
 
 @DPU.AsLoader
 public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig_V1> {

@@ -1,4 +1,4 @@
-package eu.unifiedviews.plugins.loader.rdftovirtuosoandckan;
+package org.opendatanode.plugins.loader.rdftovirtuosoandckan;
 
 import com.vaadin.data.util.ObjectProperty;
 import com.vaadin.ui.CheckBox;
@@ -6,8 +6,7 @@ import com.vaadin.ui.FormLayout;
 
 import eu.unifiedviews.dpu.config.DPUConfigException;
 import eu.unifiedviews.helpers.dpu.vaadin.dialog.AbstractDialog;
-import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkanVaadinDialog;
-import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuosoVaadinDialog;
+import eu.unifiedviews.plugins.loader.rdftovirtuosoandckan.RdfToVirtuosoAndCkanConfig_V1;
 
 /**
  * DPU's configuration dialog. User can use this dialog to configure DPU
