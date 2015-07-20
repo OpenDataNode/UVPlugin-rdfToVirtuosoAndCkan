@@ -6,8 +6,6 @@ import com.vaadin.ui.FormLayout;
 
 import eu.unifiedviews.dpu.config.DPUConfigException;
 import eu.unifiedviews.helpers.dpu.vaadin.dialog.AbstractDialog;
-import eu.unifiedviews.plugins.loader.rdftockan.RdfToCkanVaadinDialog;
-import eu.unifiedviews.plugins.loader.rdftovirtuoso.RdfToVirtuosoVaadinDialog;
 import eu.unifiedviews.plugins.loader.rdftovirtuosoandckan.RdfToVirtuosoAndCkanConfig_V1;
 
 /**
