@@ -1,3 +1,10 @@
+L-RdfToVirtuosoAndCkan
+----------
+
+v1.1.2-SNAPSHOT
+---
+* Improved description (About)
+
 v1.1.0
 ---
 * possibility to clear destination graph before loading
