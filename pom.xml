@@ -39,11 +39,13 @@
 			<groupId>eu.unifiedviews.plugins</groupId>
 			<artifactId>uv-l-rdfToVirtuoso</artifactId>
 			<version>1.0.0</version>
+			<!-- source: https://github.com/UnifiedViews/Plugins/tree/master/l-rdfToVirtuoso -->
 		</dependency>
 		<dependency>
 			<groupId>org.opendatanode.plugins</groupId>
 			<artifactId>uv-l-rdfToCkan</artifactId>
 			<version>1.1.1</version>
+			<!-- source: https://github.com/OpenDataNode/UVPlugin-rdfToCKAN -->
 		</dependency>
 		<!-- Provided by Core. -->
 		<dependency>
