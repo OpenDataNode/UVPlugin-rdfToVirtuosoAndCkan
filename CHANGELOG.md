@@ -1,9 +1,9 @@
 L-RdfToVirtuosoAndCkan
 ----------
 
-v1.1.2-SNAPSHOT
+v1.1.3
 ---
-* Improved description (About)
+* Improved documentation (About)
 
 v1.1.0
 ---
