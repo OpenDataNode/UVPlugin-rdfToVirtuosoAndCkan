@@ -12,5 +12,5 @@ Nahrá RDF dáta na Virtuoso použitím L-RdfToVirtuoso a vytvorí CKAN zdroje p
 
 |Meno |Typ | Dátová hrana | Popis | Povinné |
 |:--------|:------:|:------:|:-------------|:---------------------:|
-|rdfInput          |i| RDFDataUnit | RDF data nahrané na Virtuoso a zadané inštancie CKAN |x|
-|distributionInput |i| RDFDataUnit | Distribučné metadáta vytvorené z e-distributionMetadata ||
+|rdfInput          |vstup| RDFDataUnit | RDF data nahrané na Virtuoso a zadané inštancie CKAN |áno|
+|distributionInput |vstup| RDFDataUnit | Distribučné metadáta vytvorené z e-distributionMetadata | |

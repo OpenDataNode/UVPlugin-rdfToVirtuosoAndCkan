@@ -13,4 +13,4 @@ Loads RDF data to Virtuoso using L-RdfToVirtuoso and creates CKAN resources usin
 |Name |Type | DataUnit | Description | Mandatory |
 |:--------|:------:|:------:|:-------------|:---------------------:|
 |rdfInput          |i| RDFDataUnit| RDF data loaded to Virtuoso and specified CKAN instance |x|
-|distributionInput |i| RDFDataUnit| Distribution metadata produced by e-distributionMetadata ||
+|distributionInput |i| RDFDataUnit| Distribution metadata produced by e-distributionMetadata | |
