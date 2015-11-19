@@ -43,6 +43,10 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
     public static final String CONFIGURATION_RESOURCE_NAME = "dpu.uv-l-rdfToVirtuosoAndCkan.resource.name";
 
+    public static final String DATASET_URI_ID_PLACEHOLDER = "ckan_package_id";
+
+    public static final String DATASET_URI_NAME_PLACEHOLDER = "ckan_package_name";
+
     public RdfToVirtuosoAndCkan() {
         super(RdfToVirtuosoAndCkanVaadinDialog.class, ConfigHistory.noHistory(RdfToVirtuosoAndCkanConfig_V1.class));
     }
@@ -82,8 +86,8 @@ public class RdfToVirtuosoAndCkan extends AbstractDpu<RdfToVirtuosoAndCkanConfig
 
         JsonObject dataset = rdfToCkan.packageShow(ctx, catalogApiLocation, pipelineId, userId, secretToken, additionalHttpHeaders);
         Map<String, String> args = new HashMap<>();
-        args.put("id", dataset.getJsonObject("result").getString("id"));
-        args.put("name", dataset.getJsonObject("result").getString("name"));
+        args.put(DATASET_URI_ID_PLACEHOLDER, dataset.getJsonObject("result").getString("id"));
+        args.put(DATASET_URI_NAME_PLACEHOLDER, dataset.getJsonObject("result").getString("name"));
         StrSubstitutor sub = new StrSubstitutor(args);
         String datasetUri = sub.replace(datasetUriPattern);
 
