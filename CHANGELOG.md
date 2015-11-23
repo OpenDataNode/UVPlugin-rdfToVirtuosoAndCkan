@@ -1,6 +1,11 @@
 L-RdfToVirtuosoAndCkan
 ----------
 
+v1.2.0
+---
+* dataset uri pattern parameters names changed to be clearer and more unique to prevent conflicts with Maven build properties
+* new pattern: https://host/internalcatalog/dataset/${ckan_package_id} OR https://host/internalcatalog/dataset/${ckan_package_name}
+
 v1.1.5
 ---
 * Update to API 2.1.4

@@ -19,6 +19,13 @@ These properties have to be set in backend.properties of UnifiedViews for correc
 |`org.opendatanode.CKAN.http.header.[key]`| Custom HTTP header added to requests on CKAN |
 
 
+#### Dataset URI pattern
+URI pattern can contain 2 placeholders, which are replaced during execution of the DPU. URI pattern can contain none, one or both placeholders.
+* ckan_package_id - replaced by ID of CKAN package (dataset) mapped to the executing pipeline
+* ckan_name_id    - replaced by name of CKAN package (dataset) mapped to the executing pipeline
+
+For more details, see Examples
+
 #### Examples
 
 ```INI
@@ -29,13 +36,13 @@ org.opendatanode.CKAN.http.header.X-Forwarded-Proto = https
 ```
 
 ```INI
-dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${id}
+dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${ckan_package_id}
 ```
 example Virtuoso graph name https://host/internalcatalog/dataset/452fddaa-c469-4b78-823d-320fb1bd8646.
 Notice the 452fddaa-c469-4b78-823d-320fb1bd8646 - id of CKAN dataset.
 
 ```INI
-dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${name}
+dpu.uv-l-rdfToVirtuosoAndCkan.dataset.uri.pattern = https://host/internalcatalog/dataset/${ckan_package_name}
 ```
 example Virtuoso graph name https://host/internalcatalog/dataset/my-dataset-name
 Notice the my-dataset-name - name property of CKAN dataset (the one from URL of dataset).

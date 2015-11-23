@@ -12,7 +12,7 @@
     <artifactId>uv-l-rdfToVirtuosoAndCkan</artifactId>
     <name>L-RdfToVirtuosoAndCkan</name>
     <description>Loads RDF data to Virtuoso using L-RdfToVirtuoso and creates CKAN resources using L-RdfToCkan.</description>
-    <version>1.1.5</version>
+    <version>1.2.0</version>
     <packaging>bundle</packaging>
 
     <properties>
