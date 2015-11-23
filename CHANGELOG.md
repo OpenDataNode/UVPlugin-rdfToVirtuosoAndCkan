@@ -1,6 +1,10 @@
 L-RdfToVirtuosoAndCkan
 ----------
 
+v1.2.1-SNAPSHOT
+---
+* 
+
 v1.2.0
 ---
 * dataset uri pattern parameters names changed to be clearer and more unique to prevent conflicts with Maven build properties
